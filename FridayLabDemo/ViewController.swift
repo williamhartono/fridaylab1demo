@@ -13,7 +13,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         // More changes
-        print("Test for changes")
+        print("Test for another conflict")
     }
 
 
