@@ -33,6 +33,40 @@ class RankOptionsTableViewController: UITableViewController {
     @IBOutlet weak var nextButton: UIBarButtonItem!
     
     @IBAction func nextButton(_ sender: UIBarButtonItem) {
+    if currentPerson <= numberOfPeople {
+        commitPoints()
+        
+        if currentPerson == numberOfPeople {
+            dismiss(animated: true, completion: nil)
+            
+            for i in 0..<theItems.count {
+                var itemPointsTotal = 0
+                for k in 0..<theItems[i].pointsFromEachPerson.count {
+                    itemPointsTotal += theItems[i].pointsFromEachPerson[k]
+                }
+                // print("The item \(theItems[i]) has \(itemPointsTotal) points total")
+            }
+            
+            print(theItems)
+            print("Done ranking")
+            // Perform delegate operations to send data back
+            
+        } else {
+            theItems = theItemsDefaultSort
+            tableView.reloadData()
+            
+            if currentPerson == numberOfPeople-1 {
+                nextButton.title = "Done \u{2713}"
+            }
+            
+            currentPerson += 1
+            self.navigationItem.title = "Rank Items (Person \(currentPerson)/\(numberOfPeople))"
+        }
+    }
+}
+
+    
+    @IBAction func nextButton(_ sender: UIBarButtonItem) {
         if (currentPerson == numberOfPeople ) {
             dismiss(animated: true, completion: nil)
             for i in 0..<theItems.count {
